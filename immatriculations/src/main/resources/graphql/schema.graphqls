@@ -1,0 +1,41 @@
+#http://localhost:8066/graphiql?path=/graphql
+type Query{
+    ownersList: [Owner],
+    vehicleList:[Vehicle]
+}
+type Owner{
+    id:String ,
+    name:String,
+    birthDate : Float,
+    email :String,
+    vehicles:[Vehicle]
+}
+type Vehicle{
+    id:ID ,
+    matricule:String,
+    marque : String,
+    puissanceFiscale :Int,
+    model:String,
+    owner:Owner
+}
+
+type Mutation{
+    _addOwner(owner:OwnerDTO):Owner,
+    deleteOwner(id : String):Boolean,
+    updateOwner(id:String ,owner:OwnerDTO):Owner,
+    deleteVehicle(id : String):Boolean,
+    _addVehicle(vehicle:addVehicleDTO):Vehicle,
+    ownerById(id:String):Owner,
+    VehicleById(id:String):Vehicle,
+}
+input OwnerDTO{
+    name:String,
+    email :String,
+}
+input addVehicleDTO{
+    matricule:String,
+    puissanceFiscale:Int,
+    model:String,
+    marque:String
+
+}
